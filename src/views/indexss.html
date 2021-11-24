@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/Vue.js"></script>
+    <style>
+        .tab {
+            width: 400px;
+            height: 300px;
+            border: 1px solid #ccc;
+            margin: 50px auto;
+        }
+        ul {
+            margin: 0;
+            padding: 0;
+            height: 50px;
+        }
+        li {
+            cursor: pointer;
+            box-sizing: border-box;
+            height: 50px;
+            width: 100px;
+            list-style: none;
+            text-align: center;
+            line-height: 50px;
+            float: left;
+            border-right:1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+        }
+        .active {
+            background-color: pink;
+        }
+        .img {
+            display: none;
+            height: 250px;
+            width: 400px;
+        }
+        .img img {
+            height: 100%;
+            width: 100%;
+        }
+        .current {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="tab" id="tab">
+        <ul>
+            <li @click='change(index)' :class='currentIndex==index?"active":""' :key='item.id' v-for='(item,index) in list'>{{item.title}}</li>
+            
+        </ul>
+        <div :class='currentIndex==index?"current":""' class="img" :key='item.id' v-for='(item,index) in list'>
+            <div :class="item.path"></div>
+        </div>
+    </div>
+    <script>
+        var vm=new Vue({
+            el:'.tab',
+            data:{
+                currentIndex:0,
+                list:[{
+                id:1,
+                title:'武则天',
+                path:"img/武则天.jpg",
+            },
+            {
+                id:2,
+                title:'李白',
+                path:"img/李白.jpg",
+            },
+            {
+                id:3,
+                title:'伽罗',
+                path:"img/伽罗.jpg",
+            },
+            {
+                id:4,
+                title:'大乔',
+                path:"img/大乔.jpg",
+            }]
+            },
+            methods:{
+                change:function(index){
+                    this.currentIndex=index;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
